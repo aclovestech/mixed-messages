@@ -43,3 +43,51 @@ const upliftingPhrases = [
   "Embrace the glorious mess that you are.",
   "Believe in the magic of new beginnings.",
 ];
+
+// Random Message Factory
+const createRandomMessage = () => ({
+  // Properties
+  _bibleVerse: "",
+  _prayerOfTheDay: "",
+  _upliftingPhrase: "",
+  // Getters
+  get bibleVerse() {
+    return this._bibleVerse;
+  },
+  get prayerOfTheDay() {
+    return this._prayerOfTheDay;
+  },
+  get upliftingPhrase() {
+    return this._upliftingPhrase;
+  },
+  // Methods
+  // Gets a random bible verse, prayer, and uplifting phrase from their respective arrays and saves it onto the objects properties
+  generateRandomMessage() {
+    this._bibleVerse = bibleVerses[selectRandomItem(bibleVerses.length)];
+    this._prayerOfTheDay =
+      prayersOfTheDay[selectRandomItem(prayersOfTheDay.length)];
+    this._upliftingPhrase =
+      upliftingPhrases[selectRandomItem(upliftingPhrases.length)];
+  },
+  // Checks first if the properties are filled up. If not, then it will generate them first before outputting the message.
+  displayMessage() {
+    if (
+      this._bibleVerse === "" ||
+      this._prayerOfTheDay === "" ||
+      this._upliftingPhrase === ""
+    ) {
+      this.generateRandomMessage();
+    }
+    console.log(
+      `Bible Verse:\n${this._bibleVerse}\n\nPrayer of the Day:\n${this._prayerOfTheDay}\n\n${this._upliftingPhrase}`
+    );
+  },
+});
+
+// Returns a random index that will be used to select the element within the different arrays
+const selectRandomItem = (length) => {
+  return Math.floor(Math.random() * length);
+};
+
+const messageOfTheDay = createRandomMessage();
+messageOfTheDay.displayMessage();
