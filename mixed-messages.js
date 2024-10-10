@@ -4,16 +4,51 @@
 
 // Bible Verses
 const bibleVerses = [
-  "Philippians 4:13 - I can do all things through Christ who strengthens me.",
-  "Jeremiah 29:11 - For I know the plans I have for you, declares the Lord.",
-  "Psalm 46:10 - Be still, and know that I am God.",
-  "Isaiah 40:31 - But those who hope in the Lord will renew their strength.",
-  "Romans 15:13 - May the God of hope fill you with all joy and peace.",
-  "Proverbs 3:5-6 - Trust in the Lord with all your heart and lean not on your own understanding.",
-  "Matthew 11:28 - Come to me, all you who are weary and burdened, and I will give you rest.",
-  "Psalm 37:4 - Delight yourself in the Lord, and He will give you the desires of your heart.",
-  "2 Timothy 1:7 - For God has not given us a spirit of fear, but of power and of love and of a sound mind.",
-  "Isaiah 41:10 - So do not fear, for I am with you; do not be dismayed, for I am your God.",
+  {
+    verse_reference: "Philippians 4:13",
+    passage: "I can do all things through Christ who strengthens me.",
+  },
+  {
+    verse_reference: "Jeremiah 29:11",
+    passage: "For I know the plans I have for you, declares the Lord.",
+  },
+  {
+    verse_reference: "Psalm 46:10",
+    passage: "Be still, and know that I am God.",
+  },
+  {
+    verse_reference: "Isaiah 40:31",
+    passage: "But those who hope in the Lord will renew their strength.",
+  },
+  {
+    verse_reference: "Romans 15:13",
+    passage: "May the God of hope fill you with all joy and peace.",
+  },
+  {
+    verse_reference: "Proverbs 3:5-6",
+    passage:
+      "Trust in the Lord with all your heart and lean not on your own understanding.",
+  },
+  {
+    verse_reference: "Matthew 11:28",
+    passage:
+      "Come to me, all you who are weary and burdened, and I will give you rest.",
+  },
+  {
+    verse_reference: "Psalm 37:4",
+    passage:
+      "Delight yourself in the Lord, and He will give you the desires of your heart.",
+  },
+  {
+    verse_reference: "2 Timothy 1:7",
+    passage:
+      "For God has not given us a spirit of fear, but of power and of love and of a sound mind.",
+  },
+  {
+    verse_reference: "Isaiah 41:10",
+    passage:
+      "So do not fear, for I am with you; do not be dismayed, for I am your God.",
+  },
 ];
 
 // Prayers
@@ -47,7 +82,7 @@ const upliftingPhrases = [
 // Random Message Factory
 const createRandomMessage = () => ({
   // Properties
-  _bibleVerse: "",
+  _bibleVerse: {},
   _prayerOfTheDay: "",
   _upliftingPhrase: "",
   // Getters
@@ -72,14 +107,14 @@ const createRandomMessage = () => ({
   // Checks first if the properties are filled up. If not, then it will generate them first before outputting the message.
   displayMessage() {
     if (
-      this._bibleVerse === "" ||
+      Object.keys(this._bibleVerse).length === 0 ||
       this._prayerOfTheDay === "" ||
       this._upliftingPhrase === ""
     ) {
       this.generateRandomMessage();
     }
     console.log(
-      `Bible Verse:\n${this._bibleVerse}\n\nPrayer of the Day:\n${this._prayerOfTheDay}\n\n${this._upliftingPhrase}`
+      `Bible Verse:\n${this._bibleVerse["verse_reference"]} - "${this._bibleVerse["passage"]}"\n\nPrayer of the Day:\n${this._prayerOfTheDay}\n\nKeep in mind...\n${this._upliftingPhrase}`
     );
   },
 });
